@@ -1,0 +1,28 @@
+{% load static %}
+{% load humanize %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href= " {% static 'currencies/selected_currencies.css' %}">
+
+</head>
+<body class="container">
+
+    {% for dict in json_data %}
+    <div class = 'card'>
+        <div class = 'card-header'>
+            <h2>{{dict.name}}</h2>
+       </div>
+       <div class = 'card-body'>
+        <p> <strong> Ticker: </strong>{{dict.ticker}}</p>
+        <p> <strong> Rank: </strong>{{dict.rank}}</p>
+        <p> <strong> Price (USD): </strong>{{dict.priceUsd|intcomma}}</p>
+        <p> <strong>24h Volume (USD):</strong>  {{dict.volume24|intcomma}}</p>
+       </div>
+    </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% load static %}
+{% load humanize %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 25 currencies</title>
+    <link rel="stylesheet" href="{% static 'currencies/currencies.css' %}?t={{timestamp}}">
+</head>
+<body>
+    <div class ='conatiner'>
+        <header>
+            <form action="{% url 'render_stats' %}" method="POST">
+                {% csrf_token %}
+                <h3>Select your own currencies</h3>
+                <input type="text" name = 'selected-coin' placeholder="Select your coin(s)"/>
+                <button type = 'submit'>Find Coins</button>
+            </form>
+        </header>
+        {% for dict in coins %}
+        <div class = 'crypto-card'>
+        <h3>{{dict.name}}</h3>
+        <p> <strong>Rank: </strong> {{dict.rank}}</p>
+        <p> <strong>Ticker: </strong> {{dict.ticker}}</p>
+        <p> <strong>24h Volume (USD): </strong>{{dict.volume24|intcomma}} </p>
+        <p> <strong> Price (USD): </strong>{{dict.priceUsd|intcomma}} </p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

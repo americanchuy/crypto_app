@@ -1,0 +1,46 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest CryptoCurrency News</title>
+    <link rel="stylesheet" href="{% static 'currencies/latest_news.css' %}">
+</head>
+<body>
+    <header class = 'header'>
+        <nav class = 'nav'>
+            <div class = 'container'>
+                <ul class = 'menu'>
+                    <li><a href="{% url 'top_performers' %}">Click to Find Top Performers</a></li>
+                </ul>
+            </div>
+            <div class = 'nav-search'>
+                <form action="{% url 'render_stats' %}" method="POST">
+                {% csrf_token %}
+                <h3>Select your own currencies</h3>
+                <input type="text" name = 'selected-coin' placeholder="Select your coin(s)"/>
+                <button type = 'submit'>Find Coins</button>
+            </form>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class = 'main'>
+        <div class = 'container'>
+            <section class = 'stories'> 
+                {% for story in all_stories %} 
+                <div class = 'story'>
+                    <h3 class = 'story-title'>
+                        {{story.title}}
+                    </h3>
+                    <p class = 'story-source'><strong>Source: </strong>{{story.domain}}</p>
+                    <a class = 'story-url' href="{{story.url}}" target="_blank" >Read More</a>
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+    </main>
+</body>
+</html>

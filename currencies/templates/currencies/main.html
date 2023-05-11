@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your currencies</h1>
+    {% if user.is_authenticated %}
+    <h3>Welcome: {{user.username}}</h3>
+    <p>Here are your favorite cryptocurrencies: </p>
+    <p>You can <a href="{% url 'logout' %}?next={% url 'login' %}">Logout</a></p>
+    {% else %}
+    <p>You need to login in to access this page. <a href="{% url 'login' %}?next={{ request.path }}">Login here</a> </p>
+    {% endif %}
+</body>
+</html>
