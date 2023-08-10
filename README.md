@@ -1,5 +1,5 @@
 # crypto_app
-#author of this project is americanchuy
+#author of this project is Chuy Martinez
 This is my crypto currency web application 
 
 The web application is desgined to get started with web development
